@@ -8,13 +8,12 @@
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="theme-color" content="#009">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>#card{display:none} #code{display:none}</style>
+        <style>#card{display:none} #code{display:none} input{width:200px;}</style>
     </head>
     <body id='body'>
-        <label>Enter your github username: </label><input type='text' name='username' id='username'><br>
-        <label>Repository 1 Name: </label><input type='text' placeholder="(Optional) Keep it blank if you dont want to show Repository" name='repo1' id='repo1'><br>
-        <label>Repository 2 Name: </label><input type='text' placeholder="(Optional) Keep it blank if you dont want to show Repository" name='repo2' id='repo2'><br>
-        <button onclick='generateCard()'>Generate your card</button>
+        <label>Enter your github username: </label><br><input type='text' name='username' id='username'><br>
+        <label>Repository Names <small>Sepated by coma (repo1,repo2,repo3)</small>:</label><br><input type='text' placeholder="(Optional) Keep it blank if you dont want to show Repository" name='repos' id='repos'><br>
+        <br><button onclick='generateCard()'>Generate your card</button>
         <br><br><br><br><br><br><br>
         <div username='' repo1='' repo2='' class='github-card' id="card"></div>
         <br><br>
@@ -26,8 +25,7 @@
             <div style='color:#999;background-color: #111;padding:20px;font-weight:bold'>
                 &lt;<span style='color:#09f'>div</span> 
                 <span style='color:rgb(255, 145, 11)'>username</span>='<span style='color:#fff' id='attrUsername'></span>' 
-                <span style='color:rgb(255, 145, 11)'>repo1</span>='<span style='color:#fff' id='attrRepo1'></span>' 
-                <span style='color:rgb(255, 145, 11)'>repo2</span>='<span style='color:#fff' id='attrRepo2'></span>' 
+                <span style='color:rgb(255, 145, 11)'>repos</span>='<span style='color:#fff' id='attrRepo'></span>' 
                 <span style='color:rgb(255, 145, 11)'>class</span>='<span style='color:#fff'>github-card</span>' 
                 <span style='color:rgb(255, 145, 11)'>id</span>='<span style='color:#fff' id='attrRepo2'>card</span>' 
                 &gt;&lt;/<span style='color:#09f'>div</span>&gt;
@@ -39,20 +37,17 @@
     <script>
         function generateCard(){
             let username = document.getElementById('username');
-            let repo1 = document.getElementById('repo1');
-            let repo2 = document.getElementById('repo2');
+            let repos = document.getElementById('repos');
             let card = document.getElementById('card');
 
             card.setAttribute('username',username.value);
-            card.setAttribute('repo1',repo1.value);
-            card.setAttribute('repo2',repo2.value);
+            card.setAttribute('repo1',repos.value);
             document.getElementById('attrUsername').innerHTML = username.value;
-            document.getElementById('attrRepo1').innerHTML = repo1.value;
-            document.getElementById('attrRepo2').innerHTML = repo2.value;
+            document.getElementById('attrRepo').innerHTML = repos.value;
             
             card.style.display = 'block';
             document.getElementById('code').style.display = 'block';
-            let gitcard = new Card(username.value,repo1.value,repo2.value);
+            let gitcard = new Card(username.value,repos.value.split(/\s*,\s*/));
             gitcard.create();
         }
     </script>
