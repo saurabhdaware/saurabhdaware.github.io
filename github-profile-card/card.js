@@ -37,7 +37,7 @@
            <table class='github-card-image-text-wrap'>
                <td><img class='github-card-avatar' src='${card.avatar_url}' width=100></td>
                <td class='github-card-name'>
-                   ${card.name}<br />
+                   ${(card.name && card.name.length < 16)?card.name:card.login}<br />
                    <span style='color:#222;font-size:9pt;'>Followers: ${card.followers} | Following: ${card.following}</span><br />
                    <a target='_blank' class='github-card-button' href='${card.html_url}'>View profile</a>
                </td>
