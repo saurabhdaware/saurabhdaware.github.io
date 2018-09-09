@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Play');
 .github-card{
+text-align:left;
 margin:0 !important;
 padding:0;
 display:inline-block;
